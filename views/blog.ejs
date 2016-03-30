@@ -1,0 +1,36 @@
+        <% layout('layout'); %>
+        <div class="common-title">Blog</div>
+        <div class="blog-wrapper">
+            <ul class="blog-list">
+                <% blogList.forEach(function(blogItem) { %>
+                    <li class="blog-item" data-genre-id="<%= blogItem.genre_id %>">
+                        <a href="/blog/<%= blogItem.blog_id %>" class="blog-item-link">
+                            <div class="blog-item-img-wrapper">
+                                <div style="background-image: url(<%= blogItem.image_path %>);" class="blog-item-img"></div>   
+                            </div>
+                            <div class="blog-item-sentense">
+                                <p class="blog-main-title"><%= blogItem.title %></p>
+                                <p class="blog_article"><%- blogItem.blog %></p>
+                                <p class="blog-date"><%= blogItem.created_at %></p>
+                            </div>
+                        </a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <span class="scroll-top-btn" style="display: none;"></span>
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script>
+        var $scrollTopBtn = $('.scroll-top-btn');
+        $(window).scroll(function() {
+            var scrollPlace = $(this).scrollTop();
+            if (scrollPlace > 100) {
+                $scrollTopBtn.fadeIn();
+            } else {
+                $scrollTopBtn.fadeOut();
+            }
+        });
+        $scrollTopBtn.on('click', function() {
+            $('html, body').animate({ scrollTop: 0 })
+        });
+        </script>

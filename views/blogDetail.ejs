@@ -1,0 +1,15 @@
+<% layout('layout'); %>
+    <div class="blogpage-wrapper">
+        <div class="blogpage-title"><%= title %></div>
+        <div class="blogpage-blog-wrapper">
+            <div class="blogpage-thumb" style="background-image: url(<%= blog.image_path %>);"></div>
+            <div class="blogpage-genre-date clearfix">
+                <p class="blogpage-date"><%= blog.created_at %></p>
+                <p class="blogpage-genre"><%= blog.genre %></p>
+            </div>
+            <div class="blogpage-blog"><%- blog.blog %></div>
+        </div>
+        <div class="blogpage-btn">
+            <a href="/blog" class="blogpage-btn-back">もどる</a>
+        </div>
+    </div>

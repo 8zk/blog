@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="wrapper clearfix">
+    <div class="menu">
+        <img src="/images/common/logo.png" class="logo">
+        <div>
+            <div class="category-content category-top" data-category-type="top" style="display: none;">
+                <% if (pageName !== 'top') { %>
+                    <div class="clearfix">
+                        <a href="/" class="link-menu is-top">Top</a>
+                    </div>
+                <% } else { %>
+                    <div class="menu-content">
+                        <p>訪問していただいてありがとうございます。<br>いままでに製作した作品や、日々のお勉強を残したブログを載せています。</p>
+                    </div>
+                <% } %>
+            </div>
+            <div class="category-content category-profile" data-category-type="profile" style="display: none;">
+                <% if (pageName !== 'profile') { %>
+                    <img src="/images/profile/profile_thumb.png" class="profile-sub-img">
+                    <div class="menu-content">
+                        <p>湯浅 葉月</p>
+                        <p>（ゆあさ はづき）</p>
+                        <p>26歳</p>
+                        <p>プログラミングをお勉強中</p>
+                    </div>
+                    <div class="clearfix">
+                        <a href="/profile" class="link-menu is-profile">Profile</a>
+                    </div>
+                <% } else { %>
+                    <p class="menu-content-title">Profile</p>
+                    <div class="menu-content-detail">
+                        <p>Hazuki's Skill</p>
+                        <table>
+                            <tr>
+                                <td>HTML</td>
+                                <td>★★★★★</td>
+                            </tr>
+                            <tr>
+                                <td>CSS</td>
+                                <td>★★★★★</td>
+                            </tr>
+                            <tr>
+                                <td>JavaScript　</td>
+                                <td>★★</td>
+                            </tr>
+                            <tr>
+                                <td>jQuery</td>
+                                <td>★★★</td>
+                            </tr>
+                            <tr>
+                                <td>Node.js</td>
+                                <td>★★★</td>
+                            </tr>
+                            <tr>
+                                <td>PHP</td>
+                                <td>★★</td>
+                            </tr>
+                            <tr>
+                                <td>Photoshop</td>
+                                <td>★★</td>
+                            </tr>
+                        </table>
+                    </div>
+                <% } %>
+            </div>
+            <div class="category-content category-works" data-category-type="works" style="display: none;">
+                <% if (pageName !== 'works') { %>
+                    <div class="menu-content">
+                        <p>いままでにつくった作品をのせています。どうぞ見ていってください。</p>
+                    </div>
+                    <div class="clearfix">
+                        <a href="/works" class="link-menu is-works">Works</a>
+                    </div>
+                <% } else { %>
+                    <p class="menu-content-title">Works</p>
+                <% } %>
+            </div>
+            <div class="category-content category-blog" data-category-type="blog" style="display: none;">
+                <% if (pageName !== 'blog') { %>
+                <div class="menu-content">
+                    <p>日々の生活やお勉強のことなどを書いてます。</p>
+                </div>
+                <div class="clearfix">
+                    <a href="/blog" class="link-menu is-blog">Blog</a>
+                </div>
+                <% } else { %>
+                    <p class="menu-content-title">Blog Category</p>
+                    <ul class="genre-list">
+                        <li class="genre-item">
+                            <a href="/blog#" class="genre-item-link">All</a>
+                        </li>
+                        <% genres.forEach(function(genre) { %>
+                            <li class="genre-item">
+                                <a href="/blog#<%= genre.genre_id %>" class="genre-item-link"><%= genre.genre %></a>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </div>
+            <div class="category-content category-contact" data-category-type="contact" style="display: none;">
+                <% if (pageName !== 'contact') { %>
+                    <div class="menu-content">
+                        <p>こちらから連絡がとれます。</p>
+                    </div>
+                    <div class="clearfix">
+                        <a href="mailto:hazuki8zk@yahoo.co.jp" class="link-menu is-contact">Contact</a>
+                    </div>
+                <% } else { %>
+                    Mail
+                <% } %>
+            </div>
+        </div>
+        <ul class="category-list clearfix">
+            <% categories.forEach(function(category) { %>
+                <li>
+                    <div class="category-tab is-<%= category.category_name %>" data-category-type="<%= category.category_name %>">
+                        <%= category.category_name %>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+    <div class="contents">
+        <div class="main">
+            <%- body %>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="/javascripts/jquery-hashchange.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script>
+var radarChartData = {
+    labels : ['HTML', 'JavaScript', 'CSS', 'jQuery', 'Node.js', 'PHP', 'Photoshop'],
+    datasets : [
+        {
+            fillColor : 'rgba(237, 108, 68, 0.5)',
+            strokeColor : 'rgba(237, 108, 68, 1)',
+            pointColor : 'rgba(237, 108, 68, 1)',
+            pointStrokeColor : '#fff',
+            data : [5, 2, 5, 3, 3, 2, 2]
+        }
+    ]
+};
+if (document.getElementById('canvas')) {
+    var chart = new Chart(document.getElementById('canvas').getContext('2d')).Radar(radarChartData);
+}
+$(function() {
+    $categoryContent = $('.category-content');
+    $categoryTab = $('.category-tab');
+    $menu = $('.menu');
+    $categoryTab.on('click', function() {
+        var categoryType = $(this).data('category-type');
+        $categoryContent.hide();
+        $menu.removeClass('is-profile is-blog is-works is-top is-contact');
+        $menu.addClass('is-' + categoryType);
+        $categoryTab.removeClass('is-active');
+        $(this).addClass('is-active');
+        $categoryContent.each(function() {
+            var _categoryType = $(this).data('category-type');
+            if (categoryType === _categoryType) {
+                $(this).show();
+            }
+        });
+    });
+    var url = location.pathname.substr(1) ? location.pathname.substr(1) : 'top';
+    url = (url.indexOf('blog') != -1) ? 'blog' : url;
+    $menu.addClass('is-' + url);
+    $categoryTab.removeClass('is-active');
+    $categoryContent.hide();
+    $categoryContent.each(function() {
+        var categoryType = $(this).data('category-type');
+        if (categoryType === url) {
+            $(this).show();
+        }
+    });
+    $categoryTab.each(function() {
+        var categoryType = $(this).data('category-type');
+        if (categoryType === url) {
+            $(this).addClass('is-active');
+        }
+    });
+    var $blogItem = $('.blog-item');
+    $(window).hashchange(function() {
+        var hash = location.hash.substr(1);
+        if (!hash) {
+            $blogItem.show();
+            return;
+        }
+        $blogItem.hide();
+        $blogItem.each(function() {
+            var genreId = $(this).data('genre-id');
+            if (hash == genreId) {
+                $(this).show();
+            }
+        });
+    });
+    $(window).hashchange();
+});
+</script>
+</body>
+</html>

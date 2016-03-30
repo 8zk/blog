@@ -1,0 +1,21 @@
+<% layout('layout'); %>
+<div class="create-wrapper">
+    <form action="/blog/create" method="post" enctype="multipart/form-data" clearfix>
+        <input type="text" name="blog_title" class="blog-title" placeholder="Title" required><br>
+        <textarea name="blog_input" class="blog-input" placeholder="Write your life!" required></textarea><br>
+        <div class="blog-btn-wrapper clearfix">
+            <label for="blog-image" class="blog-image">
+                + Photo
+                <input type="file" name="blog_image" id="blog-image" style="display: none;">
+            </label>
+            <div class="blog-select-genre">
+                <select name="genre_id">
+                    <% genres.forEach(function(genre) { %>
+                        <option value="<%= genre.genre_id %>"><%= genre.genre %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <button type="submit" class="blog-btn">Post!</button>
+        </div>
+    </form>
+</div>
