@@ -8,36 +8,36 @@
 <body>
 <div class="wrapper clearfix">
     <div class="menu">
-        <img src="/images/common/logo.png" class="logo">
+        <a href="/"><img src="/images/common/logo.png" class="logo"></a>
         <div>
-            <div class="category-content category-top" data-category-type="top" style="display: none;">
+            <div class="side-category is-top" data-category-type="top" style="display: none;">
                 <% if (pageName !== 'top') { %>
                     <div class="clearfix">
-                        <a href="/" class="link-menu is-top">Top</a>
+                        <a href="/" class="side-category__content__link is-top">Top</a>
                     </div>
                 <% } else { %>
-                    <div class="menu-content">
-                        <p>訪問していただいてありがとうございます。<br>いままでに製作した作品や、日々のお勉強を残したブログを載せています。</p>
+                    <div class="side-category__content">
+                        <p>訪問していただいて<br>ありがとうございます。<br>いままでに製作した作品や、日々のお勉強を残したブログを載せています。</p>
                     </div>
                 <% } %>
             </div>
-            <div class="category-content category-profile" data-category-type="profile" style="display: none;">
+            <div class="side-category is-profile" data-category-type="profile" style="display: none;">
                 <% if (pageName !== 'profile') { %>
-                    <img src="/images/profile/profile_thumb.png" class="profile-sub-img">
-                    <div class="menu-content">
+                    <img src="/images/profile/profile_thumb.png" class="side-category__profile-icon">
+                    <div class="side-category__content is-plofile is-side-plofile">
                         <p>湯浅 葉月</p>
                         <p>（ゆあさ はづき）</p>
                         <p>26歳</p>
                         <p>プログラミングをお勉強中</p>
                     </div>
                     <div class="clearfix">
-                        <a href="/profile" class="link-menu is-profile">Profile</a>
+                        <a href="/profile" class="side-category__content__link is-profile">Profile</a>
                     </div>
                 <% } else { %>
-                    <p class="menu-content-title">Profile</p>
-                    <div class="menu-content-detail">
-                        <p>Hazuki's Skill</p>
-                        <table>
+                    <p class="side-category__content__title">Profile</p>
+                    <div class="side-category__content__desc">
+                        <p>Skill</p>
+                        <table class="side-category__content__desc__table">
                             <tr>
                                 <td>HTML</td>
                                 <td>★★★★★</td>
@@ -70,47 +70,47 @@
                     </div>
                 <% } %>
             </div>
-            <div class="category-content category-works" data-category-type="works" style="display: none;">
-                <% if (pageName !== 'works') { %>
-                    <div class="menu-content">
-                        <p>いままでにつくった作品をのせています。どうぞ見ていってください。</p>
-                    </div>
-                    <div class="clearfix">
-                        <a href="/works" class="link-menu is-works">Works</a>
-                    </div>
-                <% } else { %>
-                    <p class="menu-content-title">Works</p>
-                <% } %>
+            <div class="side-category is-works" data-category-type="works" style="display: none;">
+                <div class="side-category__content">
+                    <% if (pageName !== 'works') { %>
+                        <p>いままでにつくった作品をのせています。<br>どうぞ見ていってください。</p>
+                        <div class="clearfix">
+                            <a href="/works" class="side-category__content__link is-works">Works</a>
+                        </div>
+                    <% } else { %>
+                        <p class="side-category__content__title">Works</p>
+                    <% } %>
+                </div>
             </div>
-            <div class="category-content category-blog" data-category-type="blog" style="display: none;">
+            <div class="side-category is-blog" data-category-type="blog" style="display: none;">
                 <% if (pageName !== 'blog') { %>
-                <div class="menu-content">
-                    <p>日々の生活やお勉強のことなどを書いてます。</p>
-                </div>
-                <div class="clearfix">
-                    <a href="/blog" class="link-menu is-blog">Blog</a>
-                </div>
-                <% } else { %>
-                    <p class="menu-content-title">Blog Category</p>
-                    <ul class="genre-list">
-                        <li class="genre-item">
-                            <a href="/blog#" class="genre-item-link">All</a>
-                        </li>
-                        <% genres.forEach(function(genre) { %>
-                            <li class="genre-item">
-                                <a href="/blog#<%= genre.genre_id %>" class="genre-item-link"><%= genre.genre %></a>
+                <div class="side-category__content">
+                    <p>日々の生活や勉強したことなどを書いてます。</p>
+                    <div class="clearfix">
+                        <a href="/blog" class="side-category__content__link is-blog">Blog</a>
+                    </div>
+                    <% } else { %>
+                        <p class="side-category__content__title">Blog Category</p>
+                        <ul class="side-category__content__genre-list">
+                            <li class="side-category__content__genre-item">
+                                <a href="/blog#" class="side-category__content__genre-item-link">All</a>
                             </li>
-                        <% }); %>
-                    </ul>
-                <% } %>
+                            <% genres.forEach(function(genre) { %>
+                                <li class="side-category__content__genre-item">
+                                    <a href="/blog#<%= genre.genre_id %>" class="side-category__content__genre-item-link"><%= genre.genre %></a>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+                </div>
             </div>
-            <div class="category-content category-contact" data-category-type="contact" style="display: none;">
+            <div class="side-category is-contact" data-category-type="contact" style="display: none;">
                 <% if (pageName !== 'contact') { %>
-                    <div class="menu-content">
+                    <div class="side-category__content">
                         <p>こちらから連絡がとれます。</p>
                     </div>
                     <div class="clearfix">
-                        <a href="mailto:hazuki8zk@yahoo.co.jp" class="link-menu is-contact">Contact</a>
+                        <a href="mailto:hazuki8zk@yahoo.co.jp" class="side-category__content__link is-contact">Contact</a>
                     </div>
                 <% } else { %>
                     Mail
@@ -141,9 +141,9 @@ var radarChartData = {
     labels : ['HTML', 'JavaScript', 'CSS', 'jQuery', 'Node.js', 'PHP', 'Photoshop'],
     datasets : [
         {
-            fillColor : 'rgba(237, 108, 68, 0.5)',
-            strokeColor : 'rgba(237, 108, 68, 1)',
-            pointColor : 'rgba(237, 108, 68, 1)',
+            fillColor : 'rgba(133, 165, 204, 0.5)',
+            strokeColor : 'rgba(133, 165, 204, 1)',
+            pointColor : 'rgba(133, 165, 204, 1)',
             pointStrokeColor : '#fff',
             data : [5, 2, 5, 3, 3, 2, 2]
         }
@@ -152,18 +152,28 @@ var radarChartData = {
 if (document.getElementById('canvas')) {
     var chart = new Chart(document.getElementById('canvas').getContext('2d')).Radar(radarChartData);
 }
+
 $(function() {
-    $categoryContent = $('.category-content');
+    $modal = $('.modal')
+    $modalShow = $('.modal-show');
+    $modalClose = $('.modal-close');
+    $modalShow.on('click', function() {
+        $modal.fadeIn();
+    });
+    $modalClose.on('click', function() {
+        $modal.fadeOut();
+    });
+    $sideCategory = $('.side-category');
     $categoryTab = $('.category-tab');
     $menu = $('.menu');
     $categoryTab.on('click', function() {
         var categoryType = $(this).data('category-type');
-        $categoryContent.hide();
+        $sideCategory.hide();
         $menu.removeClass('is-profile is-blog is-works is-top is-contact');
         $menu.addClass('is-' + categoryType);
         $categoryTab.removeClass('is-active');
         $(this).addClass('is-active');
-        $categoryContent.each(function() {
+        $sideCategory.each(function() {
             var _categoryType = $(this).data('category-type');
             if (categoryType === _categoryType) {
                 $(this).show();
@@ -174,8 +184,8 @@ $(function() {
     url = (url.indexOf('blog') != -1) ? 'blog' : url;
     $menu.addClass('is-' + url);
     $categoryTab.removeClass('is-active');
-    $categoryContent.hide();
-    $categoryContent.each(function() {
+    $sideCategory.hide();
+    $sideCategory.each(function() {
         var categoryType = $(this).data('category-type');
         if (categoryType === url) {
             $(this).show();
